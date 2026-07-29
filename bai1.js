@@ -32,7 +32,9 @@ let courses = [
 // khai bao const ket_qua=
 // kiem tra rating >=4 co lon hon hoac bang 4 khong
 // ; courses.filter((course) => course.rating >= 4);
-const ket_qua = courses.filter((course) => course.rating >= 4);
+const ket_qua = courses.filter((course) => {
+  return course.rating >= 4;
+});
 // in ra ket_qua
 console.log(ket_qua);
 
@@ -40,8 +42,11 @@ console.log(ket_qua);
 // khai bao const ket_qua1=
 
 const ket_qua1 = courses
-  // dung filter de loc ra nhung course co rating < 4
-  .filter((course) => course.rating < 4)
+  // dung filter de loc Lọc các phần tử trong mảng course co rating < 4
+  .filter((course) => {
+    // kiem tra rating < 4 co nho hon 4 khong
+    return course.rating < 4;
+  })
   // dung map de duyet tung phan tu va tra ve kết quả
   .map((course) => `${course.id} - ${course.title} - ${course.rating}`);
 
@@ -68,3 +73,6 @@ let addedCourses = [
 // Spread Operator
 const ket_qua2 = [...courses, ...addedCourses];
 console.log(ket_qua2);
+//bai 4 Sử dụng ES6 ( arrow function, fitter)
+// 1. Viết hàm kiểm tra 1 số có phải là số nguyên
+//2. Cho 1 mảng số nguyên. Sử dụng filter để lọc ra các số là số nguyên tố
