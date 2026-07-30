@@ -1,0 +1,126 @@
+/* App.css */
+
+:root {
+  --bg-color: #f4f4f4;
+  --white: #ffffff;
+  --primary-color: #007bff;
+  --primary-hover: #0b5ed7;
+  --border-color: #cccccc;
+  --row-hover: #e6f2ff;
+  --row-even: #f9f9f9;
+  --text-color: #333333;
+  --gray-color: gray;
+
+  --font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 20px;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+}
+
+/* Table */
+
+.table {
+  width: 700px;
+  border-collapse: collapse;
+  background-color: var(--white);
+}
+
+.table th,
+.table td {
+  border: 1px solid var(--border-color);
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: var(--row-even);
+}
+
+.table tbody tr:hover {
+  background-color: var(--row-hover);
+}
+
+/* Login */
+
+.login {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.login-form {
+  width: 430px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.login-form h1 {
+  font-size: 48px;
+  font-weight: 400;
+  margin-bottom: 30px;
+  color: var(--text-color);
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 18px;
+  font-size: 28px;
+  border: 1px solid var(--border-color);
+  outline: none;
+}
+
+.login-form input[type="password"] {
+  margin-top: -1px;
+}
+
+.remember {
+  margin: 25px 0;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-color);
+}
+
+.remember input {
+  width: 18px;
+  height: 18px;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: var(--primary-hover);
+}
+
+.copyright {
+  margin-top: 70px;
+  color: var(--gray-color);
+  font-size: 20px;
+}
