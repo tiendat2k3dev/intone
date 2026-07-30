@@ -8,11 +8,7 @@ const App = () => {
     React.Fragment,
     null,
     React.createElement("h6", null, "Bài tập 1"),
-    React.createElement(
-      "h3",
-      null,
-      "Danh sách các thành phố trực thuộc Trung ương của Việt Nam",
-    ),
+    React.createElement("h3", null, "Danh sách các thành phố "),
     React.createElement(
       "ul",
       null,
