@@ -1,9 +1,39 @@
 import React from "react";
-import { getStudents } from "./server/studentServer";
 import viteLogo from "./assets/vite.svg";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 const App = () => {
+  const students = [
+    {
+      id: 1,
+      name: "Nguyễn Văn A",
+      age: 20,
+      address: "Hà Nội",
+    },
+    {
+      id: 2,
+      name: "Trần Thị B",
+      age: 22,
+      address: "Hồ Chí Minh",
+    },
+    {
+      id: 3,
+      name: "Lê Văn C",
+      age: 21,
+      address: "Đà Nẵng",
+    },
+    {
+      id: 4,
+      name: "Phạm Thị D",
+      age: 19,
+      address: "Hải Phòng",
+    },
+    {
+      id: 5,
+      name: "Hoàng Văn E",
+      age: 23,
+      address: "Cần Thơ",
+    },
+  ];
   const baitap_1 = React.createElement(
     React.Fragment,
     null,
@@ -20,15 +50,13 @@ const App = () => {
     ),
   );
 
-  const students = getStudents();
   const table = ["STT", "Họ và tên", "Tuổi", "Địa chỉ"];
-
   return (
     <>
       <section className="mb-5">{baitap_1}</section>
-
       <div className="container mt-4">
-        <h1 className="text-center mb-4"> Bai 2 Danh sách sinh viên</h1> <br />
+        <h1 className="text-center mb-4"> Bài tập 2 Danh sách sinh viên</h1>{" "}
+        <br />
         {/* Table */}
         <table className="table table-bordered table-hover table-striped">
           <thead className="table-primary">
@@ -38,7 +66,6 @@ const App = () => {
               ))}
             </tr>
           </thead>
-
           <tbody>
             {students.map((student) => (
               <tr key={student.id}>
@@ -55,9 +82,7 @@ const App = () => {
         <div className="d-flex justify-content-center mt-5">
           <div className="w-50 text-center">
             <img src={viteLogo} alt="Avatar" width="80" className="mb-3" />
-
             <h1 className="mb-4">Please sign in</h1>
-
             <div className="form-floating mb-3">
               <input
                 type="email"
@@ -67,7 +92,6 @@ const App = () => {
               />
               <label htmlFor="email">Email address</label>
             </div>
-
             <div className="form-floating mb-3">
               <input
                 type="password"
@@ -77,7 +101,6 @@ const App = () => {
               />
               <label htmlFor="password">Password</label>
             </div>
-
             <div className="form-check text-start mb-3">
               <input
                 className="form-check-input"
@@ -88,11 +111,9 @@ const App = () => {
                 Remember me
               </label>
             </div>
-
             <button className="btn btn-primary w-100 btn-lg" type="button">
               Sign in
             </button>
-
             <p className="text-secondary mt-5">© 2017–2021</p>
           </div>
         </div>
@@ -100,5 +121,4 @@ const App = () => {
     </>
   );
 };
-
 export default App;

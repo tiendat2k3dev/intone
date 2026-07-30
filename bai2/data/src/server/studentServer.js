@@ -32,5 +32,5 @@ const students = [
 ];
 
 export function getStudents() {
-  return students;
+  return [...students];
 }
