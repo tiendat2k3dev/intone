@@ -7,7 +7,7 @@ const App = () => {
   const baitap_1 = React.createElement(
     React.Fragment,
     null,
-    React.createElement("h2", null, "Bài tập 1"),
+    React.createElement("h6", null, "Bài tập 1"),
     React.createElement(
       "h3",
       null,
@@ -32,6 +32,7 @@ const App = () => {
       <section className="mb-5">{baitap_1}</section>
 
       <div className="container mt-4">
+        <h1 className="text-center mb-4"> Bai 2 Danh sách sinh viên</h1> <br />
         {/* Table */}
         <table className="table table-bordered table-hover table-striped">
           <thead className="table-primary">
@@ -53,7 +54,7 @@ const App = () => {
             ))}
           </tbody>
         </table>
-
+        <h1 className="text-center mb-4">Bài tập 3: Form đăng nhập</h1>
         {/* Login Form */}
         <div className="d-flex justify-content-center mt-5">
           <div className="w-50 text-center">
