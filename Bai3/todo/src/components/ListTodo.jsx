@@ -3,9 +3,10 @@ import { getTodoList } from "../services/todoServices";
 import DeleteTodo from "../moal/DeleteTodo";
 
 class ListTodo extends Component {
+  // Constructor
   constructor(props) {
     super(props);
-
+    // Khởi tạo state
     this.state = {
       todoList: [],
       isOpenModal: false,
@@ -48,6 +49,7 @@ class ListTodo extends Component {
   };
 
   render() {
+    // Lấy dữ liệu từ state
     const { todoList, isOpenModal, selectedTodo } = this.state;
 
     return (

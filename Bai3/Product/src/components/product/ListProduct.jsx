@@ -7,7 +7,7 @@ class ListProduct extends Component {
   constructor(props) {
     console.log("-------init---constructor run-----------------");
     super(props);
-
+    // Khởi tạo state
     this.state = {
       productList: [],
       deleteProduct: {
