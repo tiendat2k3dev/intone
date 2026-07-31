@@ -56,17 +56,16 @@ class ListProduct extends Component {
           <thead className="table-dark">
             <tr>
               <th>STT</th>
-              <th>ID</th>
               <th>Tên sản phẩm</th>
               <th>Giá</th>
               <th>Xóa</th>
             </tr>
           </thead>
+
           <tbody>
             {this.state.productList.map((product, index) => (
               <tr key={product.id}>
                 <td>{index + 1}</td>
-                <td>{product.id}</td>
                 <td>{product.name}</td>
                 <td>{product.price.toLocaleString("vi-VN")} VNĐ</td>
                 <td>
