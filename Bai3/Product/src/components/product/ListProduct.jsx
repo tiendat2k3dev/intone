@@ -30,8 +30,7 @@ class ListProduct extends Component {
       showModal: false,
     });
   };
-  // xoa san pham va tai lai danh sach
-  // Tải lại danh sách sản phẩm
+  // tải lại danh sách sản phẩm
   reloading = () => {
     this.setState({
       productList: [...getProduct()],
