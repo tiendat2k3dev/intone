@@ -3,7 +3,9 @@ import { getProduct } from "../../services/productServices";
 import DeleteProduct from "../moal/DeleteProduct";
 
 class ListProduct extends Component {
+  //Constructor
   constructor(props) {
+    console.log("-------init---constructor run-----------------");
     super(props);
 
     this.state = {
@@ -15,35 +17,38 @@ class ListProduct extends Component {
       showModal: false,
     };
   }
-
+  // mở modal
   openModal = (product) => {
     this.setState({
       showModal: true,
       deleteProduct: product,
     });
   };
-
+  // dong modal
   closeModal = () => {
     this.setState({
       showModal: false,
     });
   };
-
+  // xoa san pham va tai lai danh sach
   reloading = () => {
     this.setState({
       productList: [...getProduct()],
     });
   };
-
+  // Lấy dữ liệu sau khi component render
   componentDidMount() {
+    console.log("------------after render-----------");
     this.setState({
       productList: [...getProduct()],
     });
   }
-
+  // render
   render() {
     return (
       <>
+        {console.log("-----------list render-------------")}
+
         <h2 className="text-center my-3">Danh sách sản phẩm</h2>
 
         <table className="table table-bordered table-striped table-hover">
@@ -56,7 +61,6 @@ class ListProduct extends Component {
               <th>Xóa</th>
             </tr>
           </thead>
-
           <tbody>
             {this.state.productList.map((product, index) => (
               <tr key={product.id}>

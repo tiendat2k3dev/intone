@@ -3,19 +3,21 @@ import { Button, Modal } from "react-bootstrap";
 import { deleteById } from "../services/todoServices";
 
 class DeleteTodo extends Component {
+  // Đóng modal
   handleClose = () => {
     this.props.onClose();
   };
-
+  // Xóa công việc và tải lại danh sách
   handleDelete = () => {
     if (!this.props.todo) return;
-
+    // Xóa công việc theo id
     deleteById(this.props.todo.id);
     this.props.onDeleteSuccess();
     this.props.onClose();
   };
 
   render() {
+    // Lấy công việc được chọn hoặc tạo một đối tượng rỗng nếu không có
     const todo = this.props.todo || { content: "" };
 
     return (

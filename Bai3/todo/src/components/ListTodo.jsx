@@ -4,18 +4,25 @@ import DeleteTodo from "../moal/DeleteTodo";
 
 class ListTodo extends Component {
   constructor(props) {
-    console.log("-------init---constructor run-----------------");
-
     super(props);
 
     this.state = {
-      todoList: getTodoList(),
+      todoList: [],
       isOpenModal: false,
       selectedTodo: null,
     };
   }
 
-  // Mở modal xóa
+  // Lấy dữ liệu sau khi component render
+  componentDidMount() {
+    console.log("------------after render-----------");
+
+    this.setState({
+      todoList: [...getTodoList()],
+    });
+  }
+
+  // Mở modal
   handleOpenModal = (todo) => {
     this.setState({
       isOpenModal: true,
@@ -31,10 +38,10 @@ class ListTodo extends Component {
     });
   };
 
-  // Cập nhật lại danh sách sau khi xóa
+  // Tải lại danh sách sau khi xóa
   handleReload = () => {
     this.setState({
-      todoList: getTodoList(),
+      todoList: [...getTodoList()],
       isOpenModal: false,
       selectedTodo: null,
     });
@@ -47,12 +54,12 @@ class ListTodo extends Component {
       <div className="container mt-3">
         <h2>Danh sách Todo</h2>
 
-        <table className="table table-bordered">
-          <thead>
+        <table className="table table-bordered table-striped">
+          <thead className="table-dark">
             <tr>
               <th>ID</th>
               <th>Nội dung</th>
-              <th width="120">Thao tác</th>
+              <th>Thao tác</th>
             </tr>
           </thead>
 
@@ -84,4 +91,5 @@ class ListTodo extends Component {
     );
   }
 }
+
 export default ListTodo;

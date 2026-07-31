@@ -3,10 +3,11 @@ import { Button, Modal } from "react-bootstrap";
 import { deleteById } from "../../services/productServices";
 
 class DeleteProduct extends Component {
+  // dong modal
   handleClose = () => {
     this.props.close();
   };
-
+  // xoa san pham va tai lai danh sach
   handleDelete = () => {
     deleteById(this.props.product.id);
     this.props.reloading();
