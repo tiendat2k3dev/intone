@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { getTodoList } from "../services/todoServices";
-import DeleteTodo from "../moal/DeleteTodo";
+import DeleteTodo from "../modal/DeleteTodo";
 
 class ListTodo extends Component {
   // Constructor

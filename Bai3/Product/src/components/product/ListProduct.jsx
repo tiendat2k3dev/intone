@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { getProduct } from "../../services/productServices";
-import DeleteProduct from "../moal/DeleteProduct";
+import DeleteProduct from "../modal/DeleteProduct";
 
 class ListProduct extends Component {
   //Constructor
