@@ -39,12 +39,10 @@ class ListTodo extends Component {
     });
   };
 
-  // Tải lại danh sách sau khi xóa
-  handleReload = () => {
+  // Tải lại danh sách công việc
+  reloading = () => {
     this.setState({
       todoList: [...getTodoList()],
-      isOpenModal: false,
-      selectedTodo: null,
     });
   };
 
@@ -87,7 +85,7 @@ class ListTodo extends Component {
           isOpen={isOpenModal}
           todo={selectedTodo}
           onClose={this.handleCloseModal}
-          onDeleteSuccess={this.handleReload}
+          reloading={this.reloading}
         />
       </div>
     );

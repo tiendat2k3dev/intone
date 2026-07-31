@@ -12,7 +12,7 @@ class DeleteTodo extends Component {
     if (!this.props.todo) return;
     // Xóa công việc theo id
     deleteById(this.props.todo.id);
-    this.props.onDeleteSuccess();
+    this.props.reloading();
     this.props.onClose();
   };
 
