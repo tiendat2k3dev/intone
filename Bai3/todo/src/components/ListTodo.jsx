@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { getTodoList } from "../services/todoServices";
+import Add from "../modal/Add";
 import DeleteTodo from "../modal/DeleteTodo";
 
 class ListTodo extends Component {
@@ -10,6 +11,7 @@ class ListTodo extends Component {
     this.state = {
       todoList: [],
       isOpenModal: false,
+      isOpenAddModal: false,
       selectedTodo: null,
     };
   }
@@ -23,7 +25,7 @@ class ListTodo extends Component {
     });
   }
 
-  // Mở modal
+  // Mở modal xóa
   handleOpenModal = (todo) => {
     this.setState({
       isOpenModal: true,
@@ -31,11 +33,25 @@ class ListTodo extends Component {
     });
   };
 
-  // Đóng modal
+  // Đóng modal xóa
   handleCloseModal = () => {
     this.setState({
       isOpenModal: false,
       selectedTodo: null,
+    });
+  };
+
+  // Mở modal thêm
+  handleOpenAddModal = () => {
+    this.setState({
+      isOpenAddModal: true,
+    });
+  };
+
+  // Đóng modal thêm
+  handleCloseAddModal = () => {
+    this.setState({
+      isOpenAddModal: false,
     });
   };
 
@@ -48,11 +64,16 @@ class ListTodo extends Component {
 
   render() {
     // Lấy dữ liệu từ state
-    const { todoList, isOpenModal, selectedTodo } = this.state;
+    const { todoList, isOpenModal, isOpenAddModal, selectedTodo } = this.state;
 
     return (
       <div className="container mt-3">
-        <h2>Danh sách Todo</h2>
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <h2>Danh sách Todo</h2>
+          <button className="btn btn-primary" onClick={this.handleOpenAddModal}>
+            Thêm mới
+          </button>
+        </div>
 
         <table className="table table-bordered table-striped">
           <thead className="table-dark">
@@ -80,6 +101,12 @@ class ListTodo extends Component {
             ))}
           </tbody>
         </table>
+
+        <Add
+          isOpen={isOpenAddModal}
+          onClose={this.handleCloseAddModal}
+          reloading={this.reloading}
+        />
 
         <DeleteTodo
           isOpen={isOpenModal}

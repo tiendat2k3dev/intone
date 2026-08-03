@@ -9,8 +9,11 @@ class DeleteProduct extends Component {
   };
   // xoa san pham va tai lai danh sach
   handleDelete = () => {
+    // Xóa sản phẩm theo id
     deleteById(this.props.product.id);
+    // Tải lại danh sách sản phẩm
     this.props.reloading();
+    // Đóng modal
     this.props.close();
   };
 

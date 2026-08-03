@@ -47,11 +47,26 @@ export const getTodoList = () => {
   return [...todoList];
 };
 
-// Xóa công việc theo id
-export const deleteById = (id) => {
-  const index = todoList.findIndex((todo) => todo.id === id);
+// Thêm công việc mới
+export const addTodo = (content) => {
+  const trimmedContent = content.trim();
 
-  if (index !== -1) {
-    todoList.splice(index, 1);
+  if (!trimmedContent) return null;
+
+  const newTodo = {
+    id: todoList.length ? todoList[todoList.length - 1].id + 1 : 1,
+    content: trimmedContent,
+  };
+
+  todoList.push(newTodo);
+  return newTodo;
+};
+// xoa san pham theo id
+export const deleteById = (id) => {
+  for (let i = 0; i < todoList.length; i++) {
+    if (id == todoList[i].id) {
+      todoList.splice(i, 1);
+      break;
+    }
   }
 };

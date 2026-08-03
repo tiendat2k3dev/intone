@@ -19,11 +19,14 @@ const Product = () => {
     name: "",
     price: "",
   });
-
+  // Xử lý tìm kiếm
   const handleSearch = (keyword) => {
+    // Nếu từ khóa rỗng thì hiển thị tất cả sản phẩm, ngược lại thì tìm kiếm
     if (keyword.trim() === "") {
+      // Hiển thị tất cả sản phẩm
       setProducts(getAll());
     } else {
+      // Tìm kiếm sản phẩm theo từ khóa
       setProducts(search(keyword));
     }
   };

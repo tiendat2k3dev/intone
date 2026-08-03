@@ -48,9 +48,7 @@ class ListProduct extends Component {
     return (
       <>
         {console.log("-----------list render-------------")}
-
         <h2 className="text-center my-3">Danh sách sản phẩm</h2>
-
         <table className="table table-bordered table-striped table-hover">
           <thead className="table-dark">
             <tr>
@@ -60,7 +58,6 @@ class ListProduct extends Component {
               <th>Xóa</th>
             </tr>
           </thead>
-
           <tbody>
             {this.state.productList.map((product, index) => (
               <tr key={product.id}>
@@ -79,7 +76,6 @@ class ListProduct extends Component {
             ))}
           </tbody>
         </table>
-
         <DeleteProduct
           show={this.state.showModal}
           product={this.state.deleteProduct}
@@ -90,5 +86,4 @@ class ListProduct extends Component {
     );
   }
 }
-
 export default ListProduct;
