@@ -29,18 +29,8 @@ export function search(keyword) {
 }
 
 // Thêm
-export function addNew(product) {
-  productList.push(product);
-}
-
-// Sửa
-export function update(product) {
-  for (let i = 0; i < productList.length; i++) {
-    if (productList[i].id === product.id) {
-      productList[i] = product;
-      break;
-    }
-  }
+export function addNew(student) {
+  productList.push(student);
 }
 
 // Xóa
