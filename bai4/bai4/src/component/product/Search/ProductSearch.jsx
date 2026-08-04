@@ -8,7 +8,7 @@ const ProductSearch = ({ onSearch }) => {
         onChange={(e) => onSearch(e.target.value)}
       />
     </div>
-  );
-};
+  )
+}
 
-export default ProductSearch;
+export default ProductSearch
