@@ -6,34 +6,42 @@ import ProductSearch from '../component/product/Search/ProductSearch'
 import Delete from '../component/modal/delete/Delete'
 
 const Product = () => {
+  // khai báo các state cần thiết
   const table = ['ID', 'Name', 'Price', 'Action']
-
+  // state products để lưu danh sách sản phẩm
   const [products, setProducts] = useState([])
+  // state deleteProduct để lưu sản phẩm cần xóa
   const [deleteProduct, setDeleteProduct] = useState({
     id: '',
     name: '',
   })
+  // state showModal để hiển thị modal xóa
   const [showModal, setShowModal] = useState(false)
+  // state isReloading để reload lại danh sách sản phẩm sau khi xóa
   const [isReloading, setIsReloading] = useState(false)
-
+  // useNavigate để điều hướng trang
   const navigate = useNavigate()
-
+  // useEffect để load danh sách sản phẩm khi component được render
   useEffect(() => {
+    // gọi hàm getAll để lấy danh sách sản phẩm
     setProducts(getAll())
   }, [isReloading])
-
+  // hàm handleSearch để tìm kiếm sản phẩm theo từ khóa
   const handleSearch = (keyword) => {
+    // nếu từ khóa rỗng thì load lại danh sách sản phẩm
     if (keyword.trim() === '') {
+      // gọi hàm getAll để lấy danh sách sản phẩm
       setProducts(getAll())
     } else {
+      // gọi hàm search để tìm kiếm sản phẩm theo từ khóa
       setProducts(search(keyword))
     }
   }
-
+  // hàm handleAddClick để điều hướng đến trang thêm sản phẩm
   const handleAddClick = () => {
     navigate('/product/add')
   }
-
+  // hàm closeModal để đóng modal xóa
   const closeModal = () => {
     setShowModal(false)
   }
@@ -67,6 +75,7 @@ const Product = () => {
                 <td>
                   <button
                     className="btn btn-warning btn-sm me-2"
+                    // onClick để điều hướng đến trang chỉnh sửa sản phẩm
                     onClick={() => navigate(`/product/edit/${product.id}`)}
                   >
                     Edit
@@ -76,6 +85,7 @@ const Product = () => {
                     className="btn btn-danger btn-sm"
                     onClick={() => {
                       setDeleteProduct(product)
+                      // setShowModal để hiển thị modal xóa
                       setShowModal(true)
                     }}
                   >
@@ -85,6 +95,7 @@ const Product = () => {
               </tr>
             ))
           ) : (
+            // nếu không có sản phẩm nào thì hiển thị thông báo
             <tr>
               <td colSpan={4} className="text-center">
                 No products found.
