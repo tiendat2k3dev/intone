@@ -1,3 +1,4 @@
+// data mẫu sản phẩm
 const productList = [
   {
     id: 1,
@@ -40,11 +41,15 @@ export function addNew(product) {
 
 // Cập nhật
 export function update(product) {
+  // tìm index của sản phẩm cần cập nhật
   const index = productList.findIndex((item) => item.id === Number(product.id))
-
+  // nếu tìm thấy thì cập nhật sản phẩm
   if (index !== -1) {
+    // cập nhật sản phẩm bằng cách gán giá trị mới cho các thuộc tính của sản phẩm cũ
     productList[index] = {
+      // giữ nguyên các thuộc tính cũ của sản phẩm cũ
       ...productList[index],
+      // cập nhật các thuộc tính mới của sản phẩm mới
       ...product,
     }
   }
