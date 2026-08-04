@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 
-const Sidebar = () => {
+const Sider = () => {
   return (
     <aside className="bg-dark text-white vh-100 p-3" style={{ width: '250px' }}>
       <h3 className="text-center mb-4">Dashboard</h3>
@@ -21,4 +21,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default Sider

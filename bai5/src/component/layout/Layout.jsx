@@ -1,6 +1,6 @@
-import Header from '../Header/Header'
-import Sidebar from '../Sidebar/Sidebar'
-import Footer from '../Footer/Footer'
+import Header from '../header/Header'
+import Sider from '../sider/Sider'
+import Footer from '../footer/Footer'
 import { Outlet } from 'react-router-dom'
 
 const Layout = () => {
@@ -11,7 +11,7 @@ const Layout = () => {
       <div className="container-fluid">
         <div className="row">
           <div className="col-3">
-            <Sidebar />
+            <Sider />
           </div>
 
           <div className="col-9">

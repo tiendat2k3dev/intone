@@ -1,24 +1,26 @@
+import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
 import { Button } from 'react-bootstrap'
 // import * as Yup from 'yup'
 import { addNew } from '../../../services/productServices'
+//
 import productValidation from '../../../utils/productValidation'
 const Add = () => {
   const navigate = useNavigate()
-
+  // hàm handleAdd để thêm sản phẩm mới
   const handleAdd = (values) => {
     const newProduct = {
       id: Number(values.id),
       name: values.name,
       price: Number(values.price),
     }
-
+    // them moi
     addNew(newProduct)
-
+    // thong bao
     toast.success('Thêm mới thành công!')
-
+    // điều hướng về trang danh sách sản phẩm
     navigate('/product')
   }
 
@@ -96,4 +98,4 @@ const Add = () => {
   )
 }
 
-export default Add
+export default React.memo(Add)

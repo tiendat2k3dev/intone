@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -7,7 +8,9 @@ import { Button } from 'react-bootstrap'
 import { getById, update } from '../../../services/productServices'
 import productValidation from '../../../utils/productValidation'
 const Edit = () => {
+  // Lấy id từ params
   const { id } = useParams()
+  // useNavigate để điều hướng trang
   const navigate = useNavigate()
 
   const [initialValues, setInitialValues] = useState({
@@ -17,8 +20,9 @@ const Edit = () => {
   })
 
   useEffect(() => {
+    // Lấy sản phẩm theo id
     const product = getById(id)
-
+    // Nếu sản phẩm tồn tại thì set initialValues, ngược lại hiển thị thông báo lỗi và điều hướng về trang danh sách sản phẩm
     if (product) {
       setInitialValues({
         id: product.id,
@@ -30,7 +34,7 @@ const Edit = () => {
       navigate('/product')
     }
   }, [id, navigate])
-
+  // hàm handleEdit để cập nhật sản phẩm
   const handleEdit = (values) => {
     update({
       id: Number(values.id),
@@ -113,4 +117,4 @@ const Edit = () => {
   )
 }
 
-export default Edit
+export default React.memo(Edit)
