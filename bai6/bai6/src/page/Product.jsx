@@ -1,0 +1,141 @@
+import { useEffect, useState } from "react";
+import { getAll, search } from "../service/productServices";
+import ProductHeader from "../component/product/header/ProductHeader.jsx";
+import ProductSearch from "../component/product/search/ProductSearch";
+import Delete from "../component/modal/delete/Delete.jsx";
+import Add from "../component/modal/Add/Add.jsx";
+import Edit from "../component/modal/edit/Edit.jsx";
+
+const Product = () => {
+  const table = ["STT", "Name", "Price", "Action"];
+
+  const [products, setProducts] = useState([]);
+  const [deleteProduct, setDeleteProduct] = useState({
+    id: "",
+    name: "",
+  });
+
+  const [showModal, setShowModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editProduct, setEditProduct] = useState(null);
+  const [isReloading, setIsReloading] = useState(false);
+
+  // Lấy danh sách sản phẩm
+  useEffect(() => {
+    console.log("-----------effect------------");
+    const fetData = async () => {
+      const list = await getAll();
+      setProducts(list);
+    };
+    fetData();
+  }, [isReloading]);
+
+  // Chuyển sang trang thêm mới
+  const handleAddClick = () => {
+    setShowAddModal(true);
+  };
+
+  const closeAddModal = () => {
+    setShowAddModal(false);
+  };
+
+  const closeEditModal = () => {
+    setShowEditModal(false);
+    setEditProduct(null);
+  };
+
+  // Tìm kiếm
+  const handleSearch = async (keyword) => {
+    const data = await search(keyword);
+    setProducts(data);
+  };
+
+  // Đóng modal
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  return (
+    <div className="container mt-4">
+      <ProductHeader
+        name="Product Management"
+        add="Add Product"
+        onAddClick={handleAddClick}
+      />
+
+      <ProductSearch onSearch={handleSearch} />
+
+      <table className="table table-bordered table-hover">
+        <thead className="table-dark">
+          <tr>
+            {table.map((item, index) => (
+              <th key={index}>{item}</th>
+            ))}
+          </tr>
+        </thead>
+
+        <tbody>
+          {products.length > 0 ? (
+            products.map((product, index) => (
+              <tr key={product.id}>
+                <td>{index + 1}</td>
+                <td>{product.name}</td>
+                <td>{product.price}</td>
+                <td>
+                  <button
+                    className="btn btn-warning btn-sm me-2"
+                    onClick={() => {
+                      setEditProduct(product);
+                      setShowEditModal(true);
+                    }}
+                  >
+                    Edit
+                  </button>
+
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => {
+                      setDeleteProduct(product);
+                      setShowModal(true);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan={4} className="text-center">
+                No products found.
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+
+      <Delete
+        show={showModal}
+        close={closeModal}
+        product={deleteProduct}
+        setIsReloading={setIsReloading}
+      />
+
+      <Add
+        show={showAddModal}
+        close={closeAddModal}
+        setIsReloading={setIsReloading}
+      />
+
+      <Edit
+        show={showEditModal}
+        close={closeEditModal}
+        product={editProduct}
+        setIsReloading={setIsReloading}
+      />
+    </div>
+  );
+};
+
+export default Product;
