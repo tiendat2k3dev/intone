@@ -2,7 +2,6 @@ import Header from "./Header/Header";
 import Sider from "./Sider/Sider";
 import Footer from "./Footer/Footer";
 import { Outlet } from "react-router-dom";
-
 const Layout = () => {
   return (
     <>
@@ -17,7 +16,6 @@ const Layout = () => {
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   );
