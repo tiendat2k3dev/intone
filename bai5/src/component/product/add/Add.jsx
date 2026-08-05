@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { ErrorMessage, Field, Form, Formik } from 'formik'
@@ -11,13 +10,8 @@ const Add = () => {
   const navigate = useNavigate()
   // hàm handleAdd để thêm sản phẩm mới
   const handleAdd = (values) => {
-    const newProduct = {
-      id: Number(values.id),
-      name: values.name,
-      price: Number(values.price),
-    }
     // them moi
-    addNew(newProduct)
+    addNew(values)
     // thong bao
     toast.success('Thêm mới thành công!')
     // điều hướng về trang danh sách sản phẩm
@@ -98,4 +92,4 @@ const Add = () => {
   )
 }
 
-export default React.memo(Add)
+export default Add
