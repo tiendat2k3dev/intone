@@ -7,18 +7,35 @@ import { updateProduct, getCategories } from "../../../service/productServices";
 
 const Edit = ({ show, close, product, setIsReloading }) => {
   const [categories, setCategories] = useState([]);
-
   useEffect(() => {
-    if (show) {
-      loadCategories();
+    const fetData = async () => {
+      const list = await getCategories();
+      setCategories(list);
+    };
+    fetData();
+  }, []);
+  const handleEdit = async (values) => {
+    const category = categories.find(
+      (item) => String(item.id) === values.categoryId,
+    );
+
+    const updatedProduct = {
+      ...product,
+      name: values.name,
+      price: Number(values.price),
+      category: category,
+    };
+
+    const isSuccess = await updateProduct(product.id, updatedProduct);
+
+    if (isSuccess) {
+      toast.success("Cập nhật thành công!");
+      close();
+      setIsReloading((prev) => !prev);
+    } else {
+      toast.error("Cập nhật không thành công!");
     }
-  }, [show]);
-
-  const loadCategories = async () => {
-    const data = await getCategories();
-    setCategories(data);
   };
-
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Vui lòng nhập tên sản phẩm"),
     price: Yup.number()
@@ -41,28 +58,7 @@ const Edit = ({ show, close, product, setIsReloading }) => {
           categoryId: product?.category?.id || "",
         }}
         validationSchema={validationSchema}
-        onSubmit={async (values, { setSubmitting }) => {
-          const category = categories.find((c) => String(c.id) === String(values.categoryId));
-          const updatedProduct = {
-            ...product,
-            name: values.name,
-            price: Number(values.price),
-            category: {
-              id: category.id,
-              name: category.name,
-            },
-          };
-          
-          const isSuccess = await updateProduct(product.id, updatedProduct);
-          if (isSuccess) {
-            toast.success("Cập nhật thành công!");
-            setIsReloading((pre) => !pre);
-            close();
-          } else {
-            toast.error("Cập nhật không thành công!");
-          }
-          setSubmitting(false);
-        }}
+        onSubmit={handleEdit}
       >
         {({
           values,
@@ -141,4 +137,4 @@ const Edit = ({ show, close, product, setIsReloading }) => {
   );
 };
 
-export default Edit;
+export default React.memo(Edit);

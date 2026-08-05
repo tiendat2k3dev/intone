@@ -6,19 +6,15 @@ import { toast } from "react-toastify";
 import { addNew, getCategories } from "../../../service/productServices";
 
 const Add = ({ show, close, setIsReloading }) => {
+  //
   const [categories, setCategories] = useState([]);
-
   useEffect(() => {
-    if (show) {
-      loadCategories();
-    }
-  }, [show]);
-
-  const loadCategories = async () => {
-    const data = await getCategories();
-    setCategories(data);
-  };
-
+    const fetData = async () => {
+      const list = await getCategories();
+      setCategories(list);
+    };
+    fetData();
+  }, []);
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Vui lòng nhập tên sản phẩm"),
     price: Yup.number()
@@ -27,6 +23,29 @@ const Add = ({ show, close, setIsReloading }) => {
       .positive("Giá phải lớn hơn 0"),
     categoryId: Yup.string().required("Vui lòng chọn danh mục"),
   });
+  //
+  const handleAdd = async (values) => {
+    // Tìm category theo id
+    const category = categories.find(
+      (item) => String(item.id) === values.categoryId,
+    );
+
+    const newProduct = {
+      name: values.name,
+      price: Number(values.price),
+      category: category,
+    };
+
+    const isSuccess = await addNew(newProduct);
+
+    if (isSuccess) {
+      toast.success("Thêm thành công!");
+      setIsReloading((prev) => !prev);
+      close();
+    } else {
+      toast.error("Thêm không thành công!");
+    }
+  };
 
   return (
     <Modal show={show} onHide={close}>
@@ -36,30 +55,7 @@ const Add = ({ show, close, setIsReloading }) => {
       <Formik
         initialValues={{ name: "", price: "", categoryId: "" }}
         validationSchema={validationSchema}
-        onSubmit={async (values, { setSubmitting, resetForm }) => {
-          const category = categories.find(
-            (c) => String(c.id) === values.categoryId,
-          );
-          const newProduct = {
-            name: values.name,
-            price: Number(values.price),
-            category: {
-              id: category.id,
-              name: category.name,
-            },
-          };
-
-          const isSuccess = await addNew(newProduct);
-          if (isSuccess) {
-            toast.success("Thêm thành công!");
-            setIsReloading((pre) => !pre);
-            resetForm();
-            close();
-          } else {
-            toast.error("Thêm không thành công!");
-          }
-          setSubmitting(false);
-        }}
+        onSubmit={handleAdd}
       >
         {({
           values,

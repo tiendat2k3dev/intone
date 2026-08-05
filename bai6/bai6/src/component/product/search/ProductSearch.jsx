@@ -3,24 +3,23 @@ import { useState } from "react";
 const ProductSearch = ({ onSearch }) => {
   const [keyword, setKeyword] = useState("");
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    onSearch(keyword);
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      onSearch(keyword);
+    }
   };
 
   return (
-    <form className="d-flex mb-3" onSubmit={handleSearch}>
+    <div className="mb-3">
       <input
         type="text"
-        className="form-control me-2"
-        placeholder="Search products..."
+        className="form-control"
+        placeholder="Search by product name..."
         value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
+        onKeyDown={handleKeyDown}
       />
-      <button type="submit" className="btn btn-outline-success">
-        Search
-      </button>
-    </form>
+    </div>
   );
 };
 

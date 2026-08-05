@@ -5,8 +5,8 @@
       "name": "Xiaomi 14",
       "price": 18000000,
       "category": {
-        "id": "1",
-        "name": "Apple"
+        "id": "2",
+        "name": "Samsung"
       }
     },
     {
@@ -22,10 +22,10 @@
       "name": "Frontend Intern",
       "price": 1000000,
       "category": {
-        "id": "1",
-        "name": "Apple"
+        "id": "2",
+        "name": "Samsung"
       },
-      "id": "qszKQQEo6Vc"
+      "id": "YbYE7stsP2Q"
     },
     {
       "name": "Frontend Intern",
@@ -34,16 +34,34 @@
         "id": "1",
         "name": "Apple"
       },
-      "id": "YbYE7stsP2Q"
+      "id": "s_PW7PhWwCo"
     },
     {
-      "name": "1",
-      "price": 11,
+      "name": "TEST",
+      "price": 1000000,
       "category": {
         "id": "1",
         "name": "Apple"
       },
-      "id": "XXjjBVt8oeY"
+      "id": "BhVdf0RpweA"
+    },
+    {
+      "name": "Frontend Intern",
+      "price": 1000000,
+      "category": {
+        "id": "1",
+        "name": "Apple"
+      },
+      "id": "ZgEyv5azWJE"
+    },
+    {
+      "name": "Frontend Intern",
+      "price": 1000000,
+      "category": {
+        "id": "3",
+        "name": "Xiaomi"
+      },
+      "id": "k41tnL6z8bA"
     }
   ],
   "categories": [

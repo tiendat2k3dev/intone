@@ -7,7 +7,7 @@ import Add from "../component/modal/Add/Add.jsx";
 import Edit from "../component/modal/edit/Edit.jsx";
 
 const Product = () => {
-  const table = ["STT", "Name", "Price", "Action"];
+  const table = ["STT", "Name", "Price", "Danh muc", "Action"];
 
   const [products, setProducts] = useState([]);
   const [deleteProduct, setDeleteProduct] = useState({
@@ -35,11 +35,11 @@ const Product = () => {
   const handleAddClick = () => {
     setShowAddModal(true);
   };
-
+  // Đóng modal thêm mới
   const closeAddModal = () => {
     setShowAddModal(false);
   };
-
+  // Đóng modal chỉnh sửa
   const closeEditModal = () => {
     setShowEditModal(false);
     setEditProduct(null);
@@ -47,8 +47,16 @@ const Product = () => {
 
   // Tìm kiếm
   const handleSearch = async (keyword) => {
-    const data = await search(keyword);
-    setProducts(data);
+    // nếu từ khóa rỗng thì load lại danh sách sản phẩm
+    if (keyword.trim() === "") {
+      // gọi hàm getAll để lấy danh sách sản phẩm
+      const list = await getAll();
+      setProducts(list);
+    } else {
+      // gọi hàm search để tìm kiếm sản phẩm theo từ khóa
+      const list = await search(keyword);
+      setProducts(list);
+    }
   };
 
   // Đóng modal
@@ -82,6 +90,7 @@ const Product = () => {
                 <td>{index + 1}</td>
                 <td>{product.name}</td>
                 <td>{product.price}</td>
+                <td>{product.category?.name}</td>
                 <td>
                   <button
                     className="btn btn-warning btn-sm me-2"
