@@ -4,25 +4,23 @@ import Footer from "./Footer/Footer";
 import { Outlet } from "react-router-dom";
 
 const Layout = () => {
-    return (
-        <>
-            <Header />
+  return (
+    <>
+      <Header />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-3">
+            <Sider />
+          </div>
+          <div className="col-9">
+            <Outlet />
+          </div>
+        </div>
+      </div>
 
-            <div className="container-fluid">
-                <div className="row">
-                    <div className="col-3">
-                        <Sider />
-                    </div>
-
-                    <div className="col-9">
-                        <Outlet />
-                    </div>
-                </div>
-            </div>
-
-            <Footer />
-        </>
-    );
+      <Footer />
+    </>
+  );
 };
 
 export default Layout;

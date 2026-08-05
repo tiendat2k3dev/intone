@@ -4,7 +4,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { updateProduct, getCategories } from "../../../service/productServices";
-
 const Edit = ({ show, close, product, setIsReloading }) => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
