@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Form as BootstrapForm } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { updateProduct, getCategories } from "../../../service/productServices";
-
+import { productValidation } from "../../../utils/productValidation";
 const Edit = ({ show, close, product, setIsReloading }) => {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
@@ -15,14 +15,14 @@ const Edit = ({ show, close, product, setIsReloading }) => {
     fetchData();
   }, []);
 
-  const validationSchema = Yup.object({
-    name: Yup.string().required("Vui lòng nhập tên sản phẩm"),
-    price: Yup.number()
-      .typeError("Giá phải là một số")
-      .required("Vui lòng nhập giá")
-      .positive("Giá phải lớn hơn 0"),
-    categoryId: Yup.string().required("Vui lòng chọn danh mục"),
-  });
+  // const validationSchema = Yup.object({
+  //   name: Yup.string().required("Vui lòng nhập tên sản phẩm"),
+  //   price: Yup.number()
+  //     .typeError("Giá phải là một số")
+  //     .required("Vui lòng nhập giá")
+  //     .positive("Giá phải lớn hơn 0"),
+  //   categoryId: Yup.string().required("Vui lòng chọn danh mục"),
+  // });
 
   const handleEdit = async (values) => {
     const category = categories.find(
@@ -60,7 +60,7 @@ const Edit = ({ show, close, product, setIsReloading }) => {
           price: product?.price || "",
           categoryId: String(product?.category?.id || ""),
         }}
-        validationSchema={validationSchema}
+        validationSchema={productValidation}
         onSubmit={handleEdit}
       >
         <Form>

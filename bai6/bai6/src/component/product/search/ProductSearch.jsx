@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const ProductSearch = ({ onSearch }) => {
   const [keyword, setKeyword] = useState("");
-
+  //  bam end
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       onSearch(keyword);

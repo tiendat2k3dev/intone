@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Form as BootstrapForm } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import { toast } from "react-toastify";
 import { addNew, getCategories } from "../../../service/productServices";
-
+import { productValidation } from "../../../utils/productValidation";
 const Add = ({ show, close, setIsReloading }) => {
   const [categories, setCategories] = useState([]);
 
@@ -16,14 +16,14 @@ const Add = ({ show, close, setIsReloading }) => {
     fetchData();
   }, []);
 
-  const validationSchema = Yup.object({
-    name: Yup.string().required("Vui lòng nhập tên sản phẩm"),
-    price: Yup.number()
-      .typeError("Giá phải là số")
-      .required("Vui lòng nhập giá")
-      .positive("Giá phải lớn hơn 0"),
-    categoryId: Yup.string().required("Vui lòng chọn danh mục"),
-  });
+  // const validationSchema = Yup.object({
+  //   name: Yup.string().required("Vui lòng nhập tên sản phẩm"),
+  //   price: Yup.number()
+  //     .typeError("Giá phải là số")
+  //     .required("Vui lòng nhập giá")
+  //     .positive("Giá phải lớn hơn 0"),
+  //   categoryId: Yup.string().required("Vui lòng chọn danh mục"),
+  // });
 
   const handleAdd = async (values) => {
     const category = categories.find(
@@ -58,7 +58,7 @@ const Add = ({ show, close, setIsReloading }) => {
           price: "",
           categoryId: "",
         }}
-        validationSchema={validationSchema}
+        validationSchema={productValidation}
         onSubmit={handleAdd}
       >
         <Form>
