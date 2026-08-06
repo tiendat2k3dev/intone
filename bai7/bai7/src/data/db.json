@@ -1,0 +1,119 @@
+{
+  "products": [
+    {
+      "id": "3",
+      "name": "Xiaomi 14",
+      "price": 18000000,
+      "category": {
+        "id": "3",
+        "name": "Xiaomi"
+      }
+    },
+    {
+      "id": "5",
+      "name": "Google Pixel 9",
+      "price": 23000000,
+      "category": {
+        "id": 5,
+        "name": "Google"
+      }
+    },
+    {
+      "name": "Frontend Intern",
+      "price": 1000000,
+      "category": {
+        "id": "2",
+        "name": "Samsung"
+      },
+      "id": "YbYE7stsP2Q"
+    },
+    {
+      "name": "Frontend Intern",
+      "price": 1000000,
+      "category": {
+        "id": "1",
+        "name": "Apple"
+      },
+      "id": "s_PW7PhWwCo"
+    },
+    {
+      "name": "TEST",
+      "price": 1000000,
+      "category": {
+        "id": "1",
+        "name": "Apple"
+      },
+      "id": "BhVdf0RpweA"
+    },
+    {
+      "name": "Frontend Intern",
+      "price": 1000000,
+      "category": {
+        "id": "1",
+        "name": "Apple"
+      },
+      "id": "ZgEyv5azWJE"
+    },
+    {
+      "name": "Frontend Intern",
+      "price": 1000000,
+      "category": {
+        "id": "3",
+        "name": "Xiaomi"
+      },
+      "id": "k41tnL6z8bA"
+    },
+    {
+      "name": "Frontend Intern",
+      "price": 1000000,
+      "category": {
+        "id": "1",
+        "name": "Apple"
+      },
+      "id": "N1gcrjZznXU"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": "Apple"
+    },
+    {
+      "id": "2",
+      "name": "Samsung"
+    },
+    {
+      "id": "3",
+      "name": "Xiaomi"
+    },
+    {
+      "id": "4",
+      "name": "OPPO"
+    },
+    {
+      "id": "5",
+      "name": "Google"
+    },
+    {
+      "id": "6",
+      "name": "OnePlus"
+    },
+    {
+      "id": "7",
+      "name": "Vivo"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "username": "admin",
+      "password": "123456"
+    },
+    {
+      "id": "2",
+      "username": "user",
+      "password": "123456"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
