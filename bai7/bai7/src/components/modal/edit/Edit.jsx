@@ -3,11 +3,13 @@ import { Modal, Button, Form as BootstrapForm } from "react-bootstrap";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 // import * as Yup from "yup";
 import { toast } from "react-toastify";
-import { addNew, getCategories } from "../../services/productServices";
-import { productValidation } from "../../utils/productValidation";
-const Add = ({ show, close, setIsReloading }) => {
+import {
+  updateProduct,
+  getCategories,
+} from "../../../services/productServices";
+import { productValidation } from "../../../utils/productValidation";
+const Edit = ({ show, close, product, setIsReloading }) => {
   const [categories, setCategories] = useState([]);
-
   useEffect(() => {
     const fetchData = async () => {
       const list = await getCategories();
@@ -19,47 +21,50 @@ const Add = ({ show, close, setIsReloading }) => {
   // const validationSchema = Yup.object({
   //   name: Yup.string().required("Vui lòng nhập tên sản phẩm"),
   //   price: Yup.number()
-  //     .typeError("Giá phải là số")
+  //     .typeError("Giá phải là một số")
   //     .required("Vui lòng nhập giá")
   //     .positive("Giá phải lớn hơn 0"),
   //   categoryId: Yup.string().required("Vui lòng chọn danh mục"),
   // });
 
-  const handleAdd = async (values) => {
+  const handleEdit = async (values) => {
     const category = categories.find(
       (item) => String(item.id) === values.categoryId,
     );
-    const newProduct = {
-      ...values,
+
+    const updatedProduct = {
+      ...product,
+      name: values.name,
       price: Number(values.price),
       category,
     };
 
-    const isSuccess = await addNew(newProduct);
+    const isSuccess = await updateProduct(product.id, updatedProduct);
 
     if (isSuccess) {
-      toast.success("Thêm thành công!");
+      toast.success("Cập nhật thành công!");
       setIsReloading((prev) => !prev);
       close();
     } else {
-      toast.error("Thêm thất bại!");
+      toast.error("Cập nhật không thành công!");
     }
   };
 
   return (
     <Modal show={show} onHide={close}>
       <Modal.Header closeButton>
-        <Modal.Title>Thêm sản phẩm mới</Modal.Title>
+        <Modal.Title>Sửa sản phẩm</Modal.Title>
       </Modal.Header>
 
       <Formik
+        enableReinitialize
         initialValues={{
-          name: "",
-          price: "",
-          categoryId: "",
+          name: product?.name || "",
+          price: product?.price || "",
+          categoryId: String(product?.category?.id || ""),
         }}
         validationSchema={productValidation}
-        onSubmit={handleAdd}
+        onSubmit={handleEdit}
       >
         <Form>
           <Modal.Body>
@@ -89,9 +94,9 @@ const Add = ({ show, close, setIsReloading }) => {
               <Field as="select" name="categoryId" className="form-select">
                 <option value="">-- Chọn danh mục --</option>
 
-                {categories.map((item) => (
-                  <option key={item.id} value={item.id}>
-                    {item.name}
+                {categories.map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
                   </option>
                 ))}
               </Field>
@@ -110,7 +115,7 @@ const Add = ({ show, close, setIsReloading }) => {
             </Button>
 
             <Button variant="primary" type="submit">
-              Thêm
+              Cập nhật
             </Button>
           </Modal.Footer>
         </Form>
@@ -118,4 +123,5 @@ const Add = ({ show, close, setIsReloading }) => {
     </Modal>
   );
 };
-export default React.memo(Add);
+
+export default React.memo(Edit);

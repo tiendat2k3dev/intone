@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { getAll, search } from "../services/productServices";
 import ProductHeader from "../components/product/ProductHeader";
 import ProductSearch from "../components/product/ProductSearch";
-import Delete from "../components/modal/delete/Delete";
-import Add from "../components/modal/add/Add";
-import Edit from "../components/modal/edit/Edit";
+import Delete from "../modal/delete/Delete";
+import Add from "../modal/add/Add";
+import Edit from "../modal/edit/Edit";
 
 const Product = () => {
   const table = ["STT", "Name", "Price", "Danh muc", "Action"];

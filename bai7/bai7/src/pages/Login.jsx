@@ -16,7 +16,7 @@ import { useDispatch } from "react-redux";
 // Action đăng nhập
 import { login } from "../redux/action";
 
-function Login() {
+const Login = () => {
   // Thông tin người dùng (hiện chưa sử dụng)
   const userInfo = null;
 
@@ -129,6 +129,6 @@ function Login() {
       </div>
     </>
   );
-}
+};
 
 export default Login;

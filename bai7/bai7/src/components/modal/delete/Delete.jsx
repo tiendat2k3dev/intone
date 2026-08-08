@@ -1,5 +1,5 @@
 import { Button, Modal } from "react-bootstrap";
-import { deleteById } from "../../services/productServices";
+import { deleteById } from "../../../services/productServices";
 import React from "react";
 import { toast } from "react-toastify";
 const Delete = ({ show, close, product, setIsReloading }) => {
