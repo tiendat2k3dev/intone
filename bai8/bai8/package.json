@@ -1,0 +1,30 @@
+{
+  "name": "bai8",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "axios": "^1.19.0",
+    "bootstrap": "^5.3.8",
+    "formik": "^2.4.9",
+    "next": "16.3.0",
+    "react": "19.2.8",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "19.2.8",
+    "react-toastify": "^11.1.0",
+    "yup": "^1.7.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.0",
+    "typescript": "^5"
+  }
+}
